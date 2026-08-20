@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estudio Jurídico Magna — Asesoría Legal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #16233A;
+    --ink-soft: #24344d;
+    --paper: #E8E1D3;
+    --paper-light: #F3EFE5;
+    --seal: #7A2E2E;
+    --seal-dark: #5c2222;
+    --brass: #B08D57;
+    --charcoal: #2B2B28;
+    --white: #FAF8F4;
+    --font-display: 'Fraunces', serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--charcoal);
+    background: var(--paper-light);
+    line-height: 1.5;
+  }
+
+  a { color: inherit; }
+
+  .wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- HEADER ---------- */
+  header {
+    background: var(--ink);
+    color: var(--white);
+    padding: 18px 0;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    border-bottom: 1px solid rgba(176,141,87,0.35);
+  }
+  header .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .brand {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.15rem;
+    letter-spacing: 0.01em;
+  }
+  .brand small {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin-top: 2px;
+  }
+  .header-cta {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background: var(--seal);
+    color: var(--white);
+    padding: 10px 18px;
+    border-radius: 2px;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.15);
+    transition: background 0.2s ease;
+  }
+  .header-cta:hover { background: var(--seal-dark); }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    background:
+      linear-gradient(180deg, var(--ink) 0%, var(--ink-soft) 100%);
+    color: var(--white);
+    padding: 88px 0 96px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 44px);
+    pointer-events: none;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.7fr;
+    gap: 56px;
+    align-items: center;
+    position: relative;
+  }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--brass);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 26px;
+    height: 1px;
+    background: var(--brass);
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(2.2rem, 4.4vw, 3.4rem);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    margin-bottom: 22px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--brass);
+    font-weight: 500;
+  }
+  .hero p.lede {
+    font-size: 1.08rem;
+    color: rgba(250,248,244,0.78);
+    max-width: 46ch;
+    margin-bottom: 34px;
+  }
+  .hero-actions { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+
+  .stamp-btn {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    background: var(--seal);
+    color: var(--white);
+    border: none;
+    padding: 16px 28px;
+    border-radius: 2px;
+    cursor: pointer;
+    position: relative;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.12s ease, background 0.2s ease;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+  }
+  .stamp-btn:hover { background: var(--seal-dark); }
+  .stamp-btn:active { transform: translateY(2px) scale(0.985); }
+  .stamp-btn .price {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.75);
+    margin-top: 4px;
+    letter-spacing: 0.04em;
+  }
+
+  .fine-note {
+    font-size: 0.78rem;
+    color: rgba(250,248,244,0.55);
+  }
+
+  /* seal graphic */
+  .seal-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  .seal {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    border: 2px solid var(--brass);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transform: rotate(-8deg);
+    transition: transform 0.4s cubic-bezier(.2,.8,.2,1);
+  }
+  .seal::before {
+    content: "";
+    position: absolute;
+    inset: 10px;
+    border: 1px solid rgba(176,141,87,0.5);
+    border-radius: 50%;
+  }
+  .seal-text {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--brass);
+    text-align: center;
+    line-height: 1.9;
+  }
+  .seal-text .big {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--white);
+    letter-spacing: 0;
+    line-height: 1.1;
+    margin: 4px 0;
+  }
+  .hero:hover .seal { transform: rotate(-3deg) scale(1.02); }
+
+  /* stamp impact animation on CTA click */
+  @keyframes stampMark {
+    0% { opacity: 0; transform: scale(1.6) rotate(-14deg); }
+    35% { opacity: 0.9; transform: scale(1) rotate(-14deg); }
+    100% { opacity: 0; transform: scale(1) rotate(-14deg); }
+  }
+  .stamp-flash {
+    position: fixed;
+    pointer-events: none;
+    z-index: 999;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--seal);
+    border: 3px solid var(--seal);
+    border-radius: 8px;
+    padding: 10px 16px;
+    opacity: 0;
+  }
+  .stamp-flash.play { animation: stampMark 0.7s ease-out forwards; }
+
+  /* ---------- AREAS ---------- */
+  .section { padding: 88px 0; }
+  .section-head { max-width: 60ch; margin-bottom: 48px; }
+  .section-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--seal);
+    margin-bottom: 14px;
+  }
+  .section-head h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .section-head p { margin-top: 14px; color: #55524a; font-size: 1.02rem; }
+
+  .areas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--brass);
+    border: 1px solid var(--brass);
+  }
+  .area-card {
+    background: var(--white);
+    padding: 32px 26px;
+    position: relative;
+    transition: background 0.2s ease;
+  }
+  .area-card:hover { background: var(--paper); }
+  .area-tab {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin-bottom: 14px;
+  }
+  .area-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.28rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .area-card p {
+    font-size: 0.92rem;
+    color: #55524a;
+    margin-bottom: 20px;
+    min-height: 3.6em;
+  }
+  .area-link {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--seal);
+    text-decoration: none;
+    border-bottom: 1px solid var(--seal);
+    padding-bottom: 2px;
+    transition: opacity 0.15s ease;
+  }
+  .area-link:hover { opacity: 0.65; }
+
+  /* ---------- COMO FUNCIONA ---------- */
+  .how { background: var(--ink); color: var(--white); }
+  .how .section-eyebrow { color: var(--brass); }
+  .how .section-head h2 { color: var(--white); }
+  .how .section-head p { color: rgba(250,248,244,0.7); }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    counter-reset: step;
+  }
+  .step { position: relative; padding-top: 8px; border-top: 1px solid rgba(176,141,87,0.4); }
+  .step-num {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--brass);
+    margin-bottom: 14px;
+    display: block;
+  }
+  .step h4 {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .step p { font-size: 0.92rem; color: rgba(250,248,244,0.72); }
+
+  /* ---------- CONFIANZA ---------- */
+  .trust-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  .trust-item {
+    padding: 24px 0 0;
+    border-top: 1px solid rgba(43,43,40,0.15);
+  }
+  .trust-item .num {
+    font-family: var(--font-display);
+    font-size: 2.1rem;
+    font-weight: 600;
+    color: var(--seal);
+    display: block;
+    margin-bottom: 8px;
+  }
+  .trust-item p { font-size: 0.9rem; color: #55524a; }
+
+  /* ---------- FAQ ---------- */
+  .faq { background: var(--paper); }
+  .faq-list { border-top: 1px solid rgba(43,43,40,0.18); }
+  .faq-item {
+    border-bottom: 1px solid rgba(43,43,40,0.18);
+    padding: 22px 0;
+  }
+  .faq-item summary {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--ink);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: "+";
+    font-family: var(--font-mono);
+    font-size: 1.3rem;
+    color: var(--seal);
+    transition: transform 0.2s ease;
+  }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-item p {
+    margin-top: 14px;
+    font-size: 0.94rem;
+    color: #55524a;
+    max-width: 62ch;
+  }
+
+  /* ---------- CTA FINAL ---------- */
+  .cta-final {
+    background: var(--seal);
+    color: var(--white);
+    text-align: center;
+    padding: 76px 0;
+  }
+  .cta-final h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+    font-weight: 600;
+    margin-bottom: 18px;
+  }
+  .cta-final p { color: rgba(255,255,255,0.85); margin-bottom: 32px; }
+  .cta-final .stamp-btn { background: var(--ink); }
+  .cta-final .stamp-btn:hover { background: var(--ink-soft); }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    background: var(--ink);
+    color: rgba(250,248,244,0.6);
+    padding: 40px 0;
+    font-size: 0.82rem;
+  }
+  footer .wrap {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  footer a { text-decoration: none; color: rgba(250,248,244,0.75); }
+  footer a:hover { color: var(--brass); }
+
+  /* ---------- FOCUS / A11Y ---------- */
+  a:focus-visible, button:focus-visible, summary:focus-visible {
+    outline: 2px solid var(--brass);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 880px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .seal-wrap { order: -1; }
+    .seal { width: 160px; height: 160px; }
+    .areas-grid, .steps, .trust-grid { grid-template-columns: 1fr; }
+    .areas-grid { gap: 1px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand">
+      Estudio Jurídico Magna
+      <small>Estudio Jurídico · Santiago, Chile</small>
+    </div>
+    <a class="header-cta" href="#agendar" id="header-cta">Agendar asesoría</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Asesoría legal con hora confirmada</div>
+      <h1>Habla con un abogado <em>esta semana</em>, no cuando el caso ya se complicó.</h1>
+      <p class="lede">Agenda una asesoría de 45 minutos con un abogado especialista en tu materia. Escríbenos por WhatsApp, coordinamos tu hora y el pago directamente contigo.</p>
+      <div class="hero-actions">
+        <a href="#agendar" class="stamp-btn" id="hero-cta">
+          Agendar mi asesoría
+          <span class="price">Coordina hora y valor por WhatsApp</span>
+        </a>
+        <span class="fine-note">Atención 100% online, por videollamada</span>
+      </div>
+    </div>
+    <div class="seal-wrap">
+      <div class="seal">
+        <div class="seal-text">
+          Respuesta
+          <span class="big">Directa</span>
+          por WhatsApp
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="areas">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Elige tu materia</div>
+      <h2>Seis áreas, un mismo estándar de atención</h2>
+      <p>Cada asesoría es con un abogado especialista en la materia que corresponde a tu caso — no una atención genérica.</p>
+    </div>
+    <div class="areas-grid">
+
+      <div class="area-card">
+        <div class="area-tab">Área 01</div>
+        <h3>Civil</h3>
+        <p>Indemnizaciones de perjuicios, responsabilidad civil y procedimientos declarativos ante tribunales civiles.</p>
+        <a class="area-link" href="#agendar">Agendar por civil →</a>
+      </div>
+
+      <div class="area-card">
+        <div class="area-tab">Área 02</div>
+        <h3>Migratorio</h3>
+        <p>Visas, residencia, regularización, recursos de reconsideración y defensa ante expulsión.</p>
+        <a class="area-link" href="#agendar">Agendar por migratorio →</a>
+      </div>
+
+      <div class="area-card">
+        <div class="area-tab">Área 03</div>
+        <h3>Familia</h3>
+        <p>Divorcios, pensión de alimentos, cuidado personal y régimen de relación directa y regular.</p>
+        <a class="area-link" href="#agendar">Agendar por familia →</a>
+      </div>
+
+      <div class="area-card">
+        <div class="area-tab">Área 04</div>
+        <h3>Contratos</h3>
+        <p>Redacción, revisión y negociación de contratos civiles, comerciales y de arriendo.</p>
+        <a class="area-link" href="#agendar">Agendar por contratos →</a>
+      </div>
+
+      <div class="area-card">
+        <div class="area-tab">Área 05</div>
+        <h3>Inmobiliario</h3>
+        <p>Compraventas, arriendos, regularización de propiedad y conflictos entre vecinos o copropietarios.</p>
+        <a class="area-link" href="#agendar">Agendar por inmobiliario →</a>
+      </div>
+
+      <div class="area-card">
+        <div class="area-tab">Área 06</div>
+        <h3>Ejecutivo</h3>
+        <p>Cobro de deudas mediante pagarés, cheques y otros títulos ejecutivos — desde la demanda hasta el embargo.</p>
+        <a class="area-link" href="#agendar">Agendar por ejecutivo →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section how">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Proceso</div>
+      <h2>Tres pasos, sin trámites de por medio</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="step-num">01</span>
+        <h4>Escribes por WhatsApp</h4>
+        <p>Nos cuentas brevemente tu caso y el área que corresponde a tu situación.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">02</span>
+        <h4>Coordinas tu hora y el pago</h4>
+        <p>Te confirmamos un horario disponible y el medio de pago directamente por WhatsApp, sin pasos intermedios.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">03</span>
+        <h4>Te reúnes con tu abogado</h4>
+        <p>45 minutos enfocados en tu caso: diagnóstico claro y próximos pasos, por videollamada.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Por qué agendar aquí</div>
+      <h2>Sin relleno, solo lo que un cliente necesita saber</h2>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-item">
+        <span class="num">6</span>
+        <p>Áreas de práctica cubiertas por abogados dedicados a esa materia — no un generalista para todo.</p>
+      </div>
+      <div class="trust-item">
+        <span class="num">Directo</span>
+        <p>Hablas con el abogado a cargo de tu caso desde la primera reunión, sin intermediarios ni derivaciones internas.</p>
+      </div>
+      <div class="trust-item">
+        <span class="num">45'</span>
+        <p>Minutos por asesoría: tiempo suficiente para un diagnóstico real del caso, sin extenderse innecesariamente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section faq" id="agendar">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Antes de agendar</div>
+      <h2>Preguntas frecuentes</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary>¿Cuánto cuesta la asesoría?</summary>
+        <p>El valor de la asesoría se informa directamente por WhatsApp al coordinar tu hora.</p>
+      </details>
+      <details class="faq-item">
+        <summary>¿Qué pasa si contrato al estudio después de la asesoría?</summary>
+        <p>El valor de la asesoría se descuenta del costo de la representación si decides contratar al estudio para llevar tu caso.</p>
+      </details>
+      <details class="faq-item">
+        <summary>¿Es presencial u online?</summary>
+        <p>La asesoría es 100% online, por videollamada. No hay atención presencial por el momento.</p>
+      </details>
+      <details class="faq-item">
+        <summary>¿Puedo reagendar o cancelar?</summary>
+        <p>Puedes reagendar tu hora hasta con 1 hora de anticipación. No se realizan cancelaciones con devolución del pago.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="wrap">
+    <h2>Tu caso no mejora esperando.</h2>
+    <p>Agenda tu asesoría ahora y habla con un abogado especialista esta semana.</p>
+    <a href="#" class="stamp-btn" id="final-cta">
+      Agendar mi asesoría
+      <span class="price">Coordina hora y valor por WhatsApp</span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year"></span> Estudio Jurídico Magna · Santiago, Chile</span>
+    <span>
+      <a href="https://wa.me/56945918454" target="_blank" rel="noopener">WhatsApp</a> ·
+      <a href="mailto:ej.magnaasociados@gmail.com">ej.magnaasociados@gmail.com</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Agendamiento vía WhatsApp — sin cobros en la página por el momento.
+  const BOOKING_URL = "https://wa.me/56945918454?text=" + encodeURIComponent("Hola, quiero agendar una asesoría con Estudio Jurídico Magna.");
+
+  document.querySelectorAll('#hero-cta, #final-cta, #header-cta, .area-link').forEach(el => {
+    el.setAttribute('href', BOOKING_URL);
+    el.setAttribute('target', '_blank');
+    el.setAttribute('rel', 'noopener');
+  });
+
+  // Efecto de "estampado" al hacer clic en el CTA principal
+  function stampEffect(e) {
+    const flash = document.createElement('div');
+    flash.className = 'stamp-flash';
+    flash.textContent = 'WHATSAPP';
+    flash.style.left = (e.clientX - 60) + 'px';
+    flash.style.top = (e.clientY - 24) + 'px';
+    document.body.appendChild(flash);
+    requestAnimationFrame(() => flash.classList.add('play'));
+    setTimeout(() => flash.remove(), 750);
+  }
+  ['hero-cta', 'final-cta'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('click', stampEffect);
+  });
+</script>
+
+</body>
+</html>
