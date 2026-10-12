@@ -2,6 +2,7 @@
 <html lang="es-CL">
 <head>
 <meta charset="UTF-8">
+<script>document.documentElement.classList.add("js")</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Estudio Jurídico Magna — Asesoría Legal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -438,9 +439,6 @@
     outline-offset: 3px;
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    * { animation: none !important; transition: none !important; }
-  }
 
   /* ---------- RESPONSIVE ---------- */
   @media (max-width: 880px) {
@@ -450,6 +448,112 @@
     .areas-grid, .steps, .trust-grid { grid-template-columns: 1fr; }
     .areas-grid { gap: 1px; }
   }
+
+  /* ================= PULIDO DE MOVIMIENTO ================= */
+  :root {
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --t-press: 100ms;
+    --t-fast: 160ms;
+    --t-base: 220ms;
+  }
+  html { -webkit-text-size-adjust: 100%; }
+  body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  a, button, summary { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+
+  /* Títulos grandes: espaciado más apretado y líneas equilibradas */
+  .hero h1 { letter-spacing: -0.022em; text-wrap: balance; }
+  .section-head h2, .cta-final h2 { letter-spacing: -0.018em; text-wrap: balance; }
+  .hero p.lede, .section-head p, .faq-item p { text-wrap: pretty; }
+
+  /* Barra superior tipo vidrio esmerilado */
+  /* Franja marina detrás de la barra al inicio: así el vidrio no se ve grisáceo arriba */
+  html { background: var(--paper-light); }
+  body { background: linear-gradient(to bottom, var(--ink) 0, var(--ink) 140px, var(--paper-light) 140px); }
+  header {
+    background: rgba(22, 35, 58, 0.80);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    backdrop-filter: blur(20px) saturate(140%);
+  }
+  @media (max-width: 480px) {
+    .brand { font-size: 1.05rem; }
+    .brand small { display: none; }
+    .header-cta { white-space: nowrap; padding: 10px 14px; font-size: 0.7rem; }
+  }
+
+  /* Botones: responden en cuanto se presionan (nunca desde scale 0) */
+  .stamp-btn, .header-cta {
+    transition: transform var(--t-fast) var(--ease-out), background-color var(--t-fast) var(--ease-out);
+  }
+  .stamp-btn:active, .header-cta:active {
+    transform: scale(0.97);
+    transition-duration: var(--t-press);
+  }
+  .area-link { transition: opacity var(--t-fast) var(--ease-out); }
+  .area-card { transition: background-color var(--t-base) var(--ease-out); }
+  footer a { transition: color var(--t-fast) var(--ease-out); }
+
+  /* En pantallas táctiles el "hover" se queda pegado: se anula */
+  @media (hover: none) {
+    .header-cta:hover { background: var(--seal); }
+    .stamp-btn:hover { background: var(--seal); }
+    .cta-final .stamp-btn:hover { background: var(--ink); }
+    .area-card:hover { background: var(--white); }
+    .area-link:hover { opacity: 1; }
+    footer a:hover { color: rgba(250, 248, 244, 0.75); }
+    .hero:hover .seal { transform: rotate(-8deg); }
+  }
+
+  /* Entrada de la primera pantalla: una sola vez, escalonada */
+  @keyframes riseIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: none; }
+  }
+  .hero-grid > div:first-child > * {
+    animation: riseIn 420ms var(--ease-out) backwards;
+  }
+  .hero-grid > div:first-child > :nth-child(1) { animation-delay: 0ms; }
+  .hero-grid > div:first-child > :nth-child(2) { animation-delay: 60ms; }
+  .hero-grid > div:first-child > :nth-child(3) { animation-delay: 120ms; }
+  .hero-grid > div:first-child > :nth-child(4) { animation-delay: 180ms; }
+
+  /* El sello se "estampa": llega un poco más grande y se asienta */
+  @keyframes sealIn {
+    from { opacity: 0; transform: rotate(-8deg) scale(1.1); }
+    to   { opacity: 1; transform: rotate(-8deg) scale(1); }
+  }
+  .seal { animation: sealIn 520ms var(--ease-out) 140ms backwards; }
+
+  /* Aparición al hacer scroll: corta y sin exagerar */
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 360ms var(--ease-out), transform 360ms var(--ease-out);
+    transition-delay: var(--d, 0ms);
+  }
+  .js .reveal.in { opacity: 1; transform: none; }
+
+  /* Preguntas frecuentes: el "+" gira y la respuesta se asienta */
+  .faq-item summary::after { transition: transform var(--t-base) var(--ease-out); }
+  @keyframes faqIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: none; }
+  }
+  .faq-item[open] p { animation: faqIn var(--t-base) var(--ease-out); }
+
+  /* Quien tiene apagado el movimiento: solo un fundido suave, nada se desplaza */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .hero-grid > div:first-child > *, .seal, .faq-item[open] p { animation: none; }
+    .js .reveal { transform: none; transition: opacity 200ms linear; transition-delay: 0ms; }
+    .stamp-btn, .header-cta { transition: none; }
+    .stamp-btn:active, .header-cta:active { transform: none; }
+    .stamp-flash.play { animation: none; }
+    .faq-item summary::after { transition: none; }
+  }
+
+  .cta-phone { margin: 28px 0 0; font-size: 0.95rem; color: rgba(255,255,255,0.8); }
+  .cta-phone a { color: var(--white); font-family: var(--font-mono); letter-spacing: 0.04em; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.5); padding-bottom: 2px; white-space: nowrap; transition: border-color var(--t-fast) var(--ease-out); }
+  .cta-phone a:hover { border-bottom-color: var(--white); }
 </style>
 </head>
 <body>
@@ -492,49 +596,49 @@
 
 <section class="section" id="areas">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div class="section-eyebrow">Elige tu materia</div>
       <h2>Seis áreas, un mismo estándar de atención</h2>
       <p>Cada asesoría es con un abogado especialista en la materia que corresponde a tu caso — no una atención genérica.</p>
     </div>
     <div class="areas-grid">
 
-      <div class="area-card">
+      <div class="area-card reveal">
         <div class="area-tab">Área 01</div>
         <h3>Civil</h3>
         <p>Indemnizaciones de perjuicios, responsabilidad civil y procedimientos declarativos ante tribunales civiles.</p>
         <a class="area-link" href="#agendar">Agendar por civil →</a>
       </div>
 
-      <div class="area-card">
+      <div class="area-card reveal">
         <div class="area-tab">Área 02</div>
         <h3>Migratorio</h3>
         <p>Visas, residencia, regularización, recursos de reconsideración y defensa ante expulsión.</p>
         <a class="area-link" href="#agendar">Agendar por migratorio →</a>
       </div>
 
-      <div class="area-card">
+      <div class="area-card reveal">
         <div class="area-tab">Área 03</div>
         <h3>Familia</h3>
         <p>Divorcios, pensión de alimentos, cuidado personal y régimen de relación directa y regular.</p>
         <a class="area-link" href="#agendar">Agendar por familia →</a>
       </div>
 
-      <div class="area-card">
+      <div class="area-card reveal">
         <div class="area-tab">Área 04</div>
         <h3>Contratos</h3>
         <p>Redacción, revisión y negociación de contratos civiles, comerciales y de arriendo.</p>
         <a class="area-link" href="#agendar">Agendar por contratos →</a>
       </div>
 
-      <div class="area-card">
+      <div class="area-card reveal">
         <div class="area-tab">Área 05</div>
         <h3>Inmobiliario</h3>
         <p>Compraventas, arriendos, regularización de propiedad y conflictos entre vecinos o copropietarios.</p>
         <a class="area-link" href="#agendar">Agendar por inmobiliario →</a>
       </div>
 
-      <div class="area-card">
+      <div class="area-card reveal">
         <div class="area-tab">Área 06</div>
         <h3>Ejecutivo</h3>
         <p>Cobro de deudas mediante pagarés, cheques y otros títulos ejecutivos — desde la demanda hasta el embargo.</p>
@@ -547,22 +651,22 @@
 
 <section class="section how">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div class="section-eyebrow">Proceso</div>
       <h2>Tres pasos, sin trámites de por medio</h2>
     </div>
     <div class="steps">
-      <div class="step">
+      <div class="step reveal">
         <span class="step-num">01</span>
         <h4>Escribes por WhatsApp</h4>
         <p>Nos cuentas brevemente tu caso y el área que corresponde a tu situación.</p>
       </div>
-      <div class="step">
+      <div class="step reveal">
         <span class="step-num">02</span>
         <h4>Coordinas tu hora y el pago</h4>
         <p>Te confirmamos un horario disponible y el medio de pago directamente por WhatsApp, sin pasos intermedios.</p>
       </div>
-      <div class="step">
+      <div class="step reveal">
         <span class="step-num">03</span>
         <h4>Te reúnes con tu abogado</h4>
         <p>45 minutos enfocados en tu caso: diagnóstico claro y próximos pasos, por videollamada.</p>
@@ -573,20 +677,20 @@
 
 <section class="section">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div class="section-eyebrow">Por qué agendar aquí</div>
       <h2>Sin relleno, solo lo que un cliente necesita saber</h2>
     </div>
     <div class="trust-grid">
-      <div class="trust-item">
+      <div class="trust-item reveal">
         <span class="num">6</span>
         <p>Áreas de práctica cubiertas por abogados dedicados a esa materia — no un generalista para todo.</p>
       </div>
-      <div class="trust-item">
+      <div class="trust-item reveal">
         <span class="num">Directo</span>
         <p>Hablas con el abogado a cargo de tu caso desde la primera reunión, sin intermediarios ni derivaciones internas.</p>
       </div>
-      <div class="trust-item">
+      <div class="trust-item reveal">
         <span class="num">45'</span>
         <p>Minutos por asesoría: tiempo suficiente para un diagnóstico real del caso, sin extenderse innecesariamente.</p>
       </div>
@@ -596,11 +700,11 @@
 
 <section class="section faq" id="agendar">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div class="section-eyebrow">Antes de agendar</div>
       <h2>Preguntas frecuentes</h2>
     </div>
-    <div class="faq-list">
+    <div class="faq-list reveal">
       <details class="faq-item" open>
         <summary>¿Cuánto cuesta la asesoría?</summary>
         <p>El valor de la asesoría se informa directamente por WhatsApp al coordinar tu hora.</p>
@@ -629,6 +733,7 @@
       Agendar mi asesoría
       <span class="price">Coordina hora y valor por WhatsApp</span>
     </a>
+    <p class="cta-phone">Escríbenos al WhatsApp <a href="https://wa.me/56945918454" target="_blank" rel="noopener">+56 9 4591 8454</a></p>
   </div>
 </section>
 
@@ -636,7 +741,7 @@
   <div class="wrap">
     <span>© <span id="year"></span> Estudio Jurídico Magna · Santiago, Chile</span>
     <span>
-      <a href="https://wa.me/56945918454" target="_blank" rel="noopener">WhatsApp</a> ·
+      WhatsApp <a href="https://wa.me/56945918454" target="_blank" rel="noopener">+56 9 4591 8454</a> ·
       <a href="mailto:ej.magnaasociados@gmail.com">ej.magnaasociados@gmail.com</a>
     </span>
   </div>
@@ -669,6 +774,23 @@
     const el = document.getElementById(id);
     if (el) el.addEventListener('click', stampEffect);
   });
+
+  // Aparición al hacer scroll (escalonado corto dentro de cada grupo)
+  (function () {
+    const items = document.querySelectorAll('.reveal');
+    const groups = new Map();
+    items.forEach(el => {
+      const parent = el.parentElement;
+      const n = groups.get(parent) || 0;
+      el.style.setProperty('--d', Math.min(n, 5) * 45 + 'ms');
+      groups.set(parent, n + 1);
+    });
+    if (!('IntersectionObserver' in window)) { items.forEach(el => el.classList.add('in')); return; }
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    items.forEach(el => io.observe(el));
+  })();
 </script>
 
 </body>
