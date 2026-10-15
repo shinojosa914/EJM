@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="UTF-8">
+<script>document.documentElement.classList.add("js")</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estudio Jurídico Magna — Asesoría Migratoria</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #16233A;
+    --ink-soft: #24344d;
+    --paper: #E8E1D3;
+    --paper-light: #F3EFE5;
+    --seal: #7A2E2E;
+    --seal-dark: #5c2222;
+    --brass: #B08D57;
+    --charcoal: #2B2B28;
+    --white: #FAF8F4;
+    --font-display: 'Fraunces', serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--charcoal);
+    background: var(--paper-light);
+    line-height: 1.5;
+  }
+
+  a { color: inherit; }
+
+  .wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- HEADER ---------- */
+  header {
+    background: var(--ink);
+    color: var(--white);
+    padding: 18px 0;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    border-bottom: 1px solid rgba(176,141,87,0.35);
+  }
+  header .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .brand {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.15rem;
+    letter-spacing: 0.01em;
+  }
+  .brand small {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin-top: 2px;
+  }
+  .header-cta {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background: var(--seal);
+    color: var(--white);
+    padding: 10px 18px;
+    border-radius: 2px;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.15);
+    transition: background 0.2s ease;
+  }
+  .header-cta:hover { background: var(--seal-dark); }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    background:
+      linear-gradient(180deg, var(--ink) 0%, var(--ink-soft) 100%);
+    color: var(--white);
+    padding: 88px 0 96px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 44px);
+    pointer-events: none;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.7fr;
+    gap: 56px;
+    align-items: center;
+    position: relative;
+  }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--brass);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 26px;
+    height: 1px;
+    background: var(--brass);
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(2.2rem, 4.4vw, 3.4rem);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    margin-bottom: 22px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--brass);
+    font-weight: 500;
+  }
+  .hero p.lede {
+    font-size: 1.08rem;
+    color: rgba(250,248,244,0.78);
+    max-width: 46ch;
+    margin-bottom: 34px;
+  }
+  .hero-actions { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+
+  .stamp-btn {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    background: var(--seal);
+    color: var(--white);
+    border: none;
+    padding: 16px 28px;
+    border-radius: 2px;
+    cursor: pointer;
+    position: relative;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.12s ease, background 0.2s ease;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+  }
+  .stamp-btn:hover { background: var(--seal-dark); }
+  .stamp-btn:active { transform: translateY(2px) scale(0.985); }
+  .stamp-btn .price {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.75);
+    margin-top: 4px;
+    letter-spacing: 0.04em;
+  }
+
+  .fine-note {
+    font-size: 0.78rem;
+    color: rgba(250,248,244,0.55);
+  }
+
+  /* seal graphic */
+  .seal-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  .seal {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    border: 2px solid var(--brass);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transform: rotate(-8deg);
+    transition: transform 0.4s cubic-bezier(.2,.8,.2,1);
+  }
+  .seal::before {
+    content: "";
+    position: absolute;
+    inset: 10px;
+    border: 1px solid rgba(176,141,87,0.5);
+    border-radius: 50%;
+  }
+  .seal-text {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--brass);
+    text-align: center;
+    line-height: 1.9;
+  }
+  .seal-text .big {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--white);
+    letter-spacing: 0;
+    line-height: 1.1;
+    margin: 4px 0;
+  }
+  .hero:hover .seal { transform: rotate(-3deg) scale(1.02); }
+
+  /* stamp impact animation on CTA click */
+  @keyframes stampMark {
+    0% { opacity: 0; transform: scale(1.6) rotate(-14deg); }
+    35% { opacity: 0.9; transform: scale(1) rotate(-14deg); }
+    100% { opacity: 0; transform: scale(1) rotate(-14deg); }
+  }
+  .stamp-flash {
+    position: fixed;
+    pointer-events: none;
+    z-index: 999;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--seal);
+    border: 3px solid var(--seal);
+    border-radius: 8px;
+    padding: 10px 16px;
+    opacity: 0;
+  }
+  .stamp-flash.play { animation: stampMark 0.7s ease-out forwards; }
+
+  /* ---------- AREAS ---------- */
+  .section { padding: 88px 0; }
+  .section-head { max-width: 60ch; margin-bottom: 48px; }
+  .section-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--seal);
+    margin-bottom: 14px;
+  }
+  .section-head h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .section-head p { margin-top: 14px; color: #55524a; font-size: 1.02rem; }
+
+  .areas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--brass);
+    border: 1px solid var(--brass);
+  }
+  .area-card {
+    background: var(--white);
+    padding: 32px 26px;
+    position: relative;
+    transition: background 0.2s ease;
+  }
+  .area-card:hover { background: var(--paper); }
+  .area-tab {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin-bottom: 14px;
+  }
+  .area-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.28rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .area-card p {
+    font-size: 0.92rem;
+    color: #55524a;
+    margin-bottom: 20px;
+    min-height: 3.6em;
+  }
+  .area-link {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--seal);
+    text-decoration: none;
+    border-bottom: 1px solid var(--seal);
+    padding-bottom: 2px;
+    transition: opacity 0.15s ease;
+  }
+  .area-link:hover { opacity: 0.65; }
+  .law-note { margin-top: 20px; font-size: 0.82rem; color: #55524a; max-width: 70ch; }
+
+  /* ---------- COMO FUNCIONA ---------- */
+  .how { background: var(--ink); color: var(--white); }
+  .how .section-eyebrow { color: var(--brass); }
+  .how .section-head h2 { color: var(--white); }
+  .how .section-head p { color: rgba(250,248,244,0.7); }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    counter-reset: step;
+  }
+  .step { position: relative; padding-top: 8px; border-top: 1px solid rgba(176,141,87,0.4); }
+  .step-num {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--brass);
+    margin-bottom: 14px;
+    display: block;
+  }
+  .step h4 {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .step p { font-size: 0.92rem; color: rgba(250,248,244,0.72); }
+
+  /* ---------- CONFIANZA ---------- */
+  .trust-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  .trust-item {
+    padding: 24px 0 0;
+    border-top: 1px solid rgba(43,43,40,0.15);
+  }
+  .trust-item .num {
+    font-family: var(--font-display);
+    font-size: 2.1rem;
+    font-weight: 600;
+    color: var(--seal);
+    display: block;
+    margin-bottom: 8px;
+  }
+  .trust-item p { font-size: 0.9rem; color: #55524a; }
+
+  /* ---------- FAQ ---------- */
+  .faq { background: var(--paper); }
+  .faq-list { border-top: 1px solid rgba(43,43,40,0.18); }
+  .faq-item {
+    border-bottom: 1px solid rgba(43,43,40,0.18);
+    padding: 22px 0;
+  }
+  .faq-item summary {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--ink);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: "+";
+    font-family: var(--font-mono);
+    font-size: 1.3rem;
+    color: var(--seal);
+    transition: transform 0.2s ease;
+  }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-item p {
+    margin-top: 14px;
+    font-size: 0.94rem;
+    color: #55524a;
+    max-width: 62ch;
+  }
+
+  /* ---------- CTA FINAL ---------- */
+  .cta-final {
+    background: var(--seal);
+    color: var(--white);
+    text-align: center;
+    padding: 76px 0;
+  }
+  .cta-final h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+    font-weight: 600;
+    margin-bottom: 18px;
+  }
+  .cta-final p { color: rgba(255,255,255,0.85); margin-bottom: 32px; }
+  .cta-final .stamp-btn { background: var(--ink); }
+  .cta-final .stamp-btn:hover { background: var(--ink-soft); }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    background: var(--ink);
+    color: rgba(250,248,244,0.6);
+    padding: 40px 0;
+    font-size: 0.82rem;
+  }
+  footer .wrap {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  footer a { text-decoration: none; color: rgba(250,248,244,0.75); }
+  footer a:hover { color: var(--brass); }
+
+  /* ---------- FOCUS / A11Y ---------- */
+  a:focus-visible, button:focus-visible, summary:focus-visible {
+    outline: 2px solid var(--brass);
+    outline-offset: 3px;
+  }
+
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 880px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .seal-wrap { order: -1; }
+    .seal { width: 160px; height: 160px; }
+    .areas-grid, .steps, .trust-grid { grid-template-columns: 1fr; }
+    .areas-grid { gap: 1px; }
+  }
+
+  /* ================= PULIDO DE MOVIMIENTO ================= */
+  :root {
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --t-press: 100ms;
+    --t-fast: 160ms;
+    --t-base: 220ms;
+  }
+  html { -webkit-text-size-adjust: 100%; }
+  body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  a, button, summary { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+
+  /* Títulos grandes: espaciado más apretado y líneas equilibradas */
+  .hero h1 { letter-spacing: -0.022em; text-wrap: balance; }
+  .section-head h2, .cta-final h2 { letter-spacing: -0.018em; text-wrap: balance; }
+  .hero p.lede, .section-head p, .faq-item p { text-wrap: pretty; }
+
+  /* Barra superior tipo vidrio esmerilado */
+  /* Franja marina detrás de la barra al inicio: así el vidrio no se ve grisáceo arriba */
+  html { background: var(--paper-light); }
+  body { background: linear-gradient(to bottom, var(--ink) 0, var(--ink) 140px, var(--paper-light) 140px); }
+  header {
+    background: rgba(22, 35, 58, 0.80);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    backdrop-filter: blur(20px) saturate(140%);
+  }
+  @media (max-width: 480px) {
+    .brand { font-size: 1.05rem; }
+    .brand small { display: none; }
+    .header-cta { white-space: nowrap; padding: 10px 14px; font-size: 0.7rem; }
+  }
+
+  /* Botones: responden en cuanto se presionan (nunca desde scale 0) */
+  .stamp-btn, .header-cta {
+    transition: transform var(--t-fast) var(--ease-out), background-color var(--t-fast) var(--ease-out);
+  }
+  .stamp-btn:active, .header-cta:active {
+    transform: scale(0.97);
+    transition-duration: var(--t-press);
+  }
+  .area-link { transition: opacity var(--t-fast) var(--ease-out); }
+  .area-card { transition: background-color var(--t-base) var(--ease-out); }
+  footer a { transition: color var(--t-fast) var(--ease-out); }
+
+  /* En pantallas táctiles el "hover" se queda pegado: se anula */
+  @media (hover: none) {
+    .header-cta:hover { background: var(--seal); }
+    .stamp-btn:hover { background: var(--seal); }
+    .cta-final .stamp-btn:hover { background: var(--ink); }
+    .area-card:hover { background: var(--white); }
+    .area-link:hover { opacity: 1; }
+    footer a:hover { color: rgba(250, 248, 244, 0.75); }
+    .hero:hover .seal { transform: rotate(-8deg); }
+  }
+
+  /* Entrada de la primera pantalla: una sola vez, escalonada */
+  @keyframes riseIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: none; }
+  }
+  .hero-grid > div:first-child > * {
+    animation: riseIn 420ms var(--ease-out) backwards;
+  }
+  .hero-grid > div:first-child > :nth-child(1) { animation-delay: 0ms; }
+  .hero-grid > div:first-child > :nth-child(2) { animation-delay: 60ms; }
+  .hero-grid > div:first-child > :nth-child(3) { animation-delay: 120ms; }
+  .hero-grid > div:first-child > :nth-child(4) { animation-delay: 180ms; }
+
+  /* El sello se "estampa": llega un poco más grande y se asienta */
+  @keyframes sealIn {
+    from { opacity: 0; transform: rotate(-8deg) scale(1.1); }
+    to   { opacity: 1; transform: rotate(-8deg) scale(1); }
+  }
+  .seal { animation: sealIn 520ms var(--ease-out) 140ms backwards; }
+
+  /* Aparición al hacer scroll: corta y sin exagerar */
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 360ms var(--ease-out), transform 360ms var(--ease-out);
+    transition-delay: var(--d, 0ms);
+  }
+  .js .reveal.in { opacity: 1; transform: none; }
+
+  /* Preguntas frecuentes: el "+" gira y la respuesta se asienta */
+  .faq-item summary::after { transition: transform var(--t-base) var(--ease-out); }
+  @keyframes faqIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: none; }
+  }
+  .faq-item[open] p { animation: faqIn var(--t-base) var(--ease-out); }
+
+  /* Quien tiene apagado el movimiento: solo un fundido suave, nada se desplaza */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .hero-grid > div:first-child > *, .seal, .faq-item[open] p { animation: none; }
+    .js .reveal { transform: none; transition: opacity 200ms linear; transition-delay: 0ms; }
+    .stamp-btn, .header-cta { transition: none; }
+    .stamp-btn:active, .header-cta:active { transform: none; }
+    .stamp-flash.play { animation: none; }
+    .faq-item summary::after { transition: none; }
+  }
+
+  .cta-phone { margin: 28px 0 0; font-size: 0.95rem; color: rgba(255,255,255,0.8); }
+  .cta-phone a { color: var(--white); font-family: var(--font-mono); letter-spacing: 0.04em; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.5); padding-bottom: 2px; white-space: nowrap; transition: border-color var(--t-fast) var(--ease-out); }
+  .cta-phone a:hover { border-bottom-color: var(--white); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand">
+      Estudio Jurídico Magna
+      <small>Estudio Jurídico · Santiago, Chile</small>
+    </div>
+    <a class="header-cta" href="#agendar" id="header-cta">Agendar asesoría</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Asesoría migratoria con hora confirmada</div>
+      <h1>Habla con un experto en migraciones <em>esta semana</em>, no cuando el caso ya se complicó.</h1>
+      <p class="lede">Agenda una asesoría de 45 minutos con un experto en migraciones. Escríbenos por WhatsApp, coordinamos tu hora y el pago directamente contigo.</p>
+      <div class="hero-actions">
+        <a href="#agendar" class="stamp-btn" id="hero-cta">
+          Agendar mi asesoría
+          <span class="price">Coordina hora y valor por WhatsApp</span>
+        </a>
+        <span class="fine-note">Atención 100% online, por videollamada</span>
+      </div>
+    </div>
+    <div class="seal-wrap">
+      <div class="seal">
+        <div class="seal-text">
+          Respuesta
+          <span class="big">Directa</span>
+          por WhatsApp
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="areas">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-eyebrow">Nuestra materia</div>
+      <h2>Derecho migratorio, con la Ley 21.325 como base</h2>
+      <p>La Ley N° 21.325, publicada el 20 de abril de 2021, regula el ingreso, la estadía, la residencia y el egreso de las personas extranjeras en Chile. Estas son algunas de sus ideas centrales.</p>
+    </div>
+    <div class="areas-grid">
+
+      <div class="area-card reveal">
+        <div class="area-tab">Asesoría</div>
+        <h3>Migratorio</h3>
+        <p>Visas, residencia, regularización, recursos de reconsideración y defensa ante expulsión.</p>
+        <a class="area-link" href="#agendar">Agendar por migratorio →</a>
+      </div>
+
+      <div class="area-card info reveal">
+        <div class="area-tab">Ley 21.325 · Art. 3</div>
+        <h3>Igualdad y no discriminación</h3>
+        <p>El Estado debe asegurar a las personas extranjeras la igualdad ante la ley y la no discriminación.</p>
+      </div>
+      <div class="area-card info reveal">
+        <div class="area-tab">Ley 21.325 · Arts. 15 y 17</div>
+        <h3>Salud y educación</h3>
+        <p>Acceso a salud, incluso en situación irregular, y a educación para niñas, niños y adolescentes en las mismas condiciones que los nacionales.</p>
+      </div>
+      <div class="area-card info reveal">
+        <div class="area-tab">Ley 21.325 · Categorías</div>
+        <h3>Tres categorías migratorias</h3>
+        <p>Permanencia transitoria, residencia temporal y residencia definitiva, cada una con requisitos y plazos propios.</p>
+      </div>
+      <div class="area-card info reveal">
+        <div class="area-tab">Ley 21.325 · Art. 19</div>
+        <h3>Reunificación familiar</h3>
+        <p>Quienes tienen residencia pueden solicitarla para ciertos familiares, como cónyuge, padres e hijos; con prioridad cuando se trata de niños, niñas y adolescentes.</p>
+      </div>
+      <div class="area-card info reveal">
+        <div class="area-tab">Ley 21.325 · Infracciones</div>
+        <h3>Irregular no es delito</h3>
+        <p>La situación migratoria irregular no constituye delito: las infracciones se sancionan administrativamente, por ejemplo con multas.</p>
+      </div>
+
+    </div>
+    <p class="law-note reveal">Información general basada en el texto de la Ley N° 21.325, con modificaciones posteriores. No reemplaza una asesoría: cada caso depende de su situación concreta.</p>
+  </div>
+</section>
+
+<section class="section how">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-eyebrow">Proceso</div>
+      <h2>Tres pasos, sin trámites de por medio</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <span class="step-num">01</span>
+        <h4>Escribes por WhatsApp</h4>
+        <p>Nos cuentas brevemente tu situación migratoria y lo que necesitas resolver.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">02</span>
+        <h4>Coordinas tu hora y el pago</h4>
+        <p>Te confirmamos un horario disponible y el medio de pago directamente por WhatsApp, sin pasos intermedios.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">03</span>
+        <h4>Te reúnes con tu experto en migraciones</h4>
+        <p>45 minutos enfocados en tu caso: diagnóstico claro y próximos pasos, por videollamada.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-eyebrow">Por qué agendar aquí</div>
+      <h2>Sin relleno, solo lo que un cliente necesita saber</h2>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-item reveal">
+        <span class="num">1</span>
+        <p>Una sola materia, derecho migratorio, con atención dedicada — no un generalista para todo.</p>
+      </div>
+      <div class="trust-item reveal">
+        <span class="num">Directo</span>
+        <p>Hablas con el experto en migraciones a cargo de tu caso desde la primera reunión, sin intermediarios ni derivaciones internas.</p>
+      </div>
+      <div class="trust-item reveal">
+        <span class="num">45'</span>
+        <p>Minutos por asesoría: tiempo suficiente para un diagnóstico real del caso, sin extenderse innecesariamente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section faq" id="agendar">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-eyebrow">Antes de agendar</div>
+      <h2>Preguntas frecuentes</h2>
+    </div>
+    <div class="faq-list reveal">
+      <details class="faq-item" open>
+        <summary>¿Cuánto cuesta la asesoría?</summary>
+        <p>El valor de la asesoría se informa directamente por WhatsApp al coordinar tu hora.</p>
+      </details>
+      <details class="faq-item">
+        <summary>¿Qué pasa si contrato al estudio después de la asesoría?</summary>
+        <p>El valor de la asesoría se descuenta del costo de la representación si decides contratar al estudio para llevar tu caso.</p>
+      </details>
+      <details class="faq-item">
+        <summary>¿Es presencial u online?</summary>
+        <p>La asesoría es 100% online, por videollamada. No hay atención presencial por el momento.</p>
+      </details>
+      <details class="faq-item">
+        <summary>¿Puedo reagendar o cancelar?</summary>
+        <p>Puedes reagendar tu hora hasta con 1 hora de anticipación. No se realizan cancelaciones con devolución del pago.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="wrap">
+    <h2>Tu caso no mejora esperando.</h2>
+    <p>Agenda tu asesoría ahora y habla con un experto en migraciones esta semana.</p>
+    <a href="#" class="stamp-btn" id="final-cta">
+      Agendar mi asesoría
+      <span class="price">Coordina hora y valor por WhatsApp</span>
+    </a>
+    <p class="cta-phone">Escríbenos al WhatsApp <a href="https://wa.me/56945918454" target="_blank" rel="noopener">+56 9 4591 8454</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year"></span> Estudio Jurídico Magna · Santiago, Chile</span>
+    <span>
+      WhatsApp <a href="https://wa.me/56945918454" target="_blank" rel="noopener">+56 9 4591 8454</a> ·
+      <a href="mailto:ej.magnaasociados@gmail.com">ej.magnaasociados@gmail.com</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Agendamiento vía WhatsApp — sin cobros en la página por el momento.
+  const BOOKING_URL = "https://wa.me/56945918454?text=" + encodeURIComponent("Hola, quiero agendar una asesoría con Estudio Jurídico Magna.");
+
+  document.querySelectorAll('#hero-cta, #final-cta, #header-cta, .area-link').forEach(el => {
+    el.setAttribute('href', BOOKING_URL);
+    el.setAttribute('target', '_blank');
+    el.setAttribute('rel', 'noopener');
+  });
+
+  // Efecto de "estampado" al hacer clic en el CTA principal
+  function stampEffect(e) {
+    const flash = document.createElement('div');
+    flash.className = 'stamp-flash';
+    flash.textContent = 'WHATSAPP';
+    flash.style.left = (e.clientX - 60) + 'px';
+    flash.style.top = (e.clientY - 24) + 'px';
+    document.body.appendChild(flash);
+    requestAnimationFrame(() => flash.classList.add('play'));
+    setTimeout(() => flash.remove(), 750);
+  }
+  ['hero-cta', 'final-cta'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('click', stampEffect);
+  });
+
+  // Aparición al hacer scroll (escalonado corto dentro de cada grupo)
+  (function () {
+    const items = document.querySelectorAll('.reveal');
+    const groups = new Map();
+    items.forEach(el => {
+      const parent = el.parentElement;
+      const n = groups.get(parent) || 0;
+      el.style.setProperty('--d', Math.min(n, 5) * 45 + 'ms');
+      groups.set(parent, n + 1);
+    });
+    if (!('IntersectionObserver' in window)) { items.forEach(el => el.classList.add('in')); return; }
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    items.forEach(el => io.observe(el));
+  })();
+</script>
+
+</body>
+</html>
